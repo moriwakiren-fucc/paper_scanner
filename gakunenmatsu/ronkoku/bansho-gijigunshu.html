@@ -5,6 +5,15 @@ body{
  width: 100vw;
  height: 100vh;
 }
+.drawer_wrap{
+ width:100%;
+ height:100%;
+ margin:0;
+ padding:0;
+ background-color:#FFFFFF00;
+ z-index:102;
+ position:absolute;
+}
 .sec1{
  font-size: 1.3em;
  height: 95vh;
@@ -33,7 +42,7 @@ body{
   top: 1.3em;
   padding-left: 0 0 0 0.15em;
   left: 1.3em;
-  z-index: 100;/* 重なり順を一番上にする */
+  z-index: 101;/* 重なり順を一番上にする */
   cursor: pointer;
 }
 
@@ -49,6 +58,7 @@ body{
   background: #333;
   transition: 0.5s;
   position: absolute;
+  z-index:101;
 }
 
 /* 三本線の一番上の棒の位置調整 */
@@ -112,7 +122,7 @@ img{
   <input id="drawer_input" class="drawer_hidden" type="checkbox">
 
   <!-- ハンバーガーアイコン -->
-  <label for="drawer_input" class="drawer_open"><span></span></label>
+  <label for="drawer_input" class="drawer_open"><div class="drawer_wrap"></div><span></span></label>
 
   <!-- メニュー -->
   <nav class="nav_content">
