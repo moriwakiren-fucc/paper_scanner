@@ -1,23 +1,4 @@
 <style>
-body{
- margin: 0;
- overflow: hidden;
- width: 100vw;
- height: 100vh;
-}
-
-.sec1{
- height: 100vh;
- width: 100vw;
- color: #FFFFFF;
- background-color: #FFFFFF;
- font-family: Klee One;
- writing-mode: vertical-rl;
- text-orientation: mixed;
- overflow: hidden;
- overflow-x: auto;
- -webkit-overflow-scrolling: touch;
-}
   
 /* チェックボックスを非表示にする */
 .drawer_hidden {
@@ -26,14 +7,14 @@ body{
 
 /* ハンバーガーアイコンの設置スペース */
 .drawer_open {
-  background-color:#FFFFFF;
+  background-color:#FFFFFF99;
   display: flex;
   justify-content: center;
   align-items: center;
   position: fixed;
   top: 0;
-  height: 2em;
-  width: 2em;
+  height: 3em;
+  width: 3em;
   left: 0;
   z-index: 101;/* 重なり順を一番上にする */
   cursor: pointer;
@@ -45,9 +26,9 @@ body{
 .drawer_open span:after {
   content: '';
   display: block;
-  height: calc(2em / 6);
-  width: calc(2em * 0.85);
-  border-radius: calc(2em / 6);
+  height: calc(3em / 8);
+  width: calc(3em * 0.85);
+  border-radius: calc(3em / 6);
   background: #333;
   transition: 0.5s;
   position: absolute;
@@ -56,12 +37,12 @@ body{
 
 /* 三本線の一番上の棒の位置調整 */
 .drawer_open span:before {
-  bottom: calc(1em / 2);
+  bottom: calc(3em / 4);
 }
 
 /* 三本線の一番下の棒の位置調整 */
 .drawer_open span:after {
-  top: calc(1em / 2);
+  top: calc(3em / 4);
 }
 
 /* アイコンがクリックされたら真ん中の線を透明にする */
@@ -87,7 +68,7 @@ body{
   top: 0%;
   left: -90%; /* メニューを画面の外に飛ばす */
   z-index: 99;
-  background: BBFFFF99;
+  background: #FFFFFF99;
   transition: .5s;
   text-align: center;
   padding-top: 20px;
@@ -104,11 +85,32 @@ body{
 #drawer_input:checked ~ .nav_content {
   left: 0;
 }
+
+body{
+ margin: 0;
+ overflow: hidden;
+ width: 100vw;
+ height: 100vh;
+}
+
+.sec1{
+ height: 100vh;
+ width: 100vw;
+ color: #FFFFFF;
+ background-color: #FFFFFF;
+ font-family: Klee One;
+ writing-mode: vertical-rl;
+ text-orientation: mixed;
+ overflow: hidden;
+ overflow-x: auto;
+ -webkit-overflow-scrolling: touch;
+}
  
-img{
+.sec1 img{
  height: 100vh;
 }
 </style>
+<body>
 <!-- ハンバーガーメニュー部分 -->
 <div class="nav">
 
@@ -132,3 +134,4 @@ img{
 <section class="sec1">
   <img src="https://moriwakiren-fucc.github.io/paper_scanner/gakunenmatsu/ronkoku/bansho-gijigunshu.jpg">
 </section>
+</body>
