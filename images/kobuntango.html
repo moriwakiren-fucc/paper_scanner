@@ -1,0 +1,52 @@
+<style>
+#toggle{
+ display: none;
+}
+label{
+ font-family: sans-serif;
+ font-size: 2em;
+ background-color: #00000066;
+ font-weight: bold;
+ position: fixed;
+ top: 0;
+ left: 0;
+}
+.lq{
+ z-index: 6;
+}
+.la{
+ z-index: 2;
+}
+img{
+ width: 100%;
+}
+.q{
+ position: absolute;
+ top: 0;
+ left: 0;
+ z-index: 4;
+}
+.a{
+ position: absolute;
+ top: 0;
+ left: 0;
+ z-index: 1;
+}
+input:checked ~ .q{
+ display: none;
+}
+input:checked ~ .lq{
+ display: none;
+}
+</style>
+<div class="b">
+<input type="checkbox" id="toggle">
+<label class="lq" for="toggle">答えを表示する</label>
+<label class="la" for="toggle">答えを表示しない</label>
+<div class="q">
+<img src="https://moriwakiren-fucc.github.io/paper_scanner/images/kobuntango_q.JPEG">
+</div>
+<div class="a">
+<img src="https://moriwakiren-fucc.github.io/paper_scanner/images/kobuntango_a.JPEG">
+</div>
+</div>
