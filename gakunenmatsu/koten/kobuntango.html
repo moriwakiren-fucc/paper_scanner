@@ -1,4 +1,23 @@
 <style>
+/* メニューのデザイン*/
+.nav_content {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0%;
+  right: 100%; /* メニューを画面の外に飛ばす */
+  z-index: 99;
+  background: rgb(110, 110, 110);
+  transition: .5s;
+  text-align: center;
+  padding-top: 20px;
+}
+
+/* アイコンがクリックされたらメニューを表示 */
+#drawer_input:checked ~ .nav_content {
+  right: 0;
+}
+ 
 #toggle{
  display: none;
 }
@@ -49,6 +68,26 @@ input:checked ~ .la{
  display: block;
 }
 </style>
+<!-- ハンバーガーメニュー部分 -->
+<div class="nav">
+
+  <!-- ハンバーガーメニューの表示・非表示を切り替えるチェックボックス -->
+  <input id="drawer_input" class="drawer_hidden" type="checkbox">
+
+  <!-- ハンバーガーアイコン -->
+  <label for="drawer_input" class="drawer_open"><span></span></label>
+
+  <!-- メニュー -->
+  <nav class="nav_content">
+    <ul class="nav_list">
+      <li class="nav_item"><a href="">TOP</a></li>
+      <li class="nav_item"><a href="">ABOUT</a></li>
+      <li class="nav_item"><a href="">SERVICE</a></li>
+    </ul>
+  </nav>
+
+</div>
+
 <div class="b">
 <input type="checkbox" id="toggle">
 <label class="lq" for="toggle">答えを表示する</label>
