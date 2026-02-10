@@ -62,7 +62,7 @@
   height: 100%;
   position: fixed;
   top: 0%;
-  right: 100%; /* メニューを画面の外に飛ばす */
+  left: -90%; /* メニューを画面の外に飛ばす */
   z-index: 99;
   background: #99FFFF;
   transition: .5s;
@@ -71,14 +71,14 @@
   font-size: 1.5em;
 }
 
-.nav_list{
+.nav_list li{
   list-style: none; /* 点を消す */
   padding: 0;       /* 余白も消す（推奨） */
 }
 
 /* アイコンがクリックされたらメニューを表示 */
 #drawer_input:checked ~ .nav_content {
-  right: 0;
+  left: 0;
 }
  
 #toggle{
