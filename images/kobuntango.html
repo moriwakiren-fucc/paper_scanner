@@ -12,21 +12,25 @@ label{
  left: 0;
 }
 .lq{
+ display: block;
  z-index: 6;
 }
 .la{
+ display: none;
  z-index: 2;
 }
 img{
  width: 100%;
 }
 .q{
+ display: block;
  position: absolute;
  top: 0;
  left: 0;
- z-index: 4;
+ z-index: 5;
 }
 .a{
+ display: none;
  position: absolute;
  top: 0;
  left: 0;
@@ -35,8 +39,14 @@ img{
 input:checked ~ .q{
  display: none;
 }
-input:not(:checked) ~ .lq{
+input:checked ~ .lq{
  display: none;
+}
+input:checked ~ .a{
+ display: block;
+}
+input:checked ~ .la{
+ display: block;
 }
 </style>
 <div class="b">
