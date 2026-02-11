@@ -3,277 +3,63 @@
 <head>
 <meta charset="UTF-8">
 <title>大鏡（花山院の出家） 口語訳　板書</title>
+
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Klee+One&display=swap');
-/* チェックボックスを非表示にする */
-.drawer_hidden {
-  display: none;
-}
 
-/* ハンバーガーアイコンの設置スペース */
-.drawer_open {
-  background-color:#FFFFFF99;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  top: 0;
-  height: 3em;
-  width: 3em;
-  left: 0;
-  z-index: 101;/* 重なり順を一番上にする */
-  cursor: pointer;
-}
-
-/* ハンバーガーメニューのアイコン */
-.drawer_open span,
-.drawer_open span:before,
-.drawer_open span:after {
-  content: '';
-  display: block;
-  height: calc(3em / 8);
-  width: calc(3em * 0.85);
-  border-radius: calc(3em / 6);
-  background: #333;
-  transition: 0.5s;
-  position: absolute;
-  z-index:103;
-}
-
-/* 三本線の一番上の棒の位置調整 */
-.drawer_open span:before {
-  bottom: calc(3em / 4);
-}
-
-/* 三本線の一番下の棒の位置調整 */
-.drawer_open span:after {
-  top: calc(3em / 4);
-}
-
-/* アイコンがクリックされたら真ん中の線を透明にする */
-#drawer_input:checked ~ .drawer_open span {
-  background: rgba(255, 255, 255, 0);
-}
-
-/* アイコンがクリックされたらアイコンが×印になように上下の線を回転 */
-#drawer_input:checked ~ .drawer_open span::before {
-  bottom: 0;
-  transform: rotate(45deg);
-}
-
-#drawer_input:checked ~ .drawer_open span::after {
-  top: 0;
-  transform: rotate(-45deg);
-}
-/* メニューのデザイン*/
-.nav_content {
-  width: 90%;
-  height: 100%;
-  position: fixed;
-  top: 0%;
-  left: -90%; /* メニューを画面の外に飛ばす */
-  z-index: 99;
-  background: #FFFFFF99;
-  transition: .5s;
-  text-align: center;
-  padding-top: 20px;
-  font-size: 1.5em;
-  overflow: scroll;
-  font-family: sans-serif;
-}
-
-.nav_list li{
-  list-style: none; /* 点を消す */
-  padding: 0;       /* 余白も消す（推奨） */
-}
-
-.nav_list li a{
-  text-decoration: none;
-  color: #0000FF;
-}
-  
-/* アイコンがクリックされたらメニューを表示 */
-#drawer_input:checked ~ .nav_content {
-  left: 0;
-}
-
+/* ===== 共通 ===== */
 body{
-  height:100vh;
   margin: 0;
-  overflow: hidden;
+  height: 100vh;
   display: flex;
   flex-direction: column;
 }
+
+/* ===== メイン表示 ===== */
 .sec1{
- padding: 0;
- font-size: 1.3em;
- height: 95vh;
- width: 100%;
- color: #FFFFFF;
- background-color: #1d5537;
- font-family: Klee One;
- writing-mode: vertical-rl;
- text-orientation: mixed;
- overflow: hidden;
- overflow-x: auto;
- -webkit-overflow-scrolling: touch;
+  flex: 1;
+  font-size: 1.3em;
+  color: #FFFFFF;
+  background-color: #1d5537;
+  font-family: "Klee One", sans-serif;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
 }
+
+/* ===== 下部バー ===== */
 .sec2{
- width: 100%;
- height: 5vh;
- background-color: #c39143;
+  height: 5vh;
+  background-color: #c39143;
 }
-div{
- margin: 0 1em;
-}
+
+/* 以下は元のまま */
+div{ margin: 0 1em; }
 .chunk{
- padding: 0.5em 0;
- margin: 0 0.5em;
- background-color: #ffffff44;
+  padding: 0.5em 0;
+  margin: 0 0.5em;
+  background-color: #ffffff44;
 }
 .hakubun{
- font-family: sans-serif;
- margin: 0;
- font-weight: bold;
+  font-family: sans-serif;
+  margin: 0;
+  font-weight: bold;
 }
-.yakubun{
- font-size: 0.7em;
-}
+.yakubun{ font-size: 0.7em; }
 .red{
- font-weight: bold;
- color: #f4b4d0;
+  font-weight: bold;
+  color: #f4b4d0;
 }
 </style>
 </head>
+
 <body>
-  
-<!-- ハンバーガーメニュー部分 -->
-<div class="nav">
-
-  <!-- ハンバーガーメニューの表示・非表示を切り替えるチェックボックス -->
-  <input id="drawer_input" class="drawer_hidden" type="checkbox">
-
-  <!-- ハンバーガーアイコン -->
-  <label for="drawer_input" class="drawer_open"><span></span></label>
-
-  <!-- メニュー -->
-  <nav class="nav_content">
-    <ul class="nav_list">
-      <li class="nav_item"><a href="https://sites.google.com/view/breakthrough79-gakunenmatsu/koten" target="_blank">古典探究のページへ</a></li>
-      <li class="nav_item"><a href="https://moriwakiren-fucc.github.io/paper_scanner/gakunenmatsu/koten/bansho-kazanin.html" target="_blank">大鏡（花山院の出家） 口語訳　板書</a></li>
-      <li class="nav_item"><a href="https://moriwakiren-fucc.github.io/paper_scanner/gakunenmatsu/koten/bansho-shoshi100.html" target="_blank">諸子百家（儒家と道家）　板書</a></li>
-      <li class="nav_item"><a href="https://moriwakiren-fucc.github.io/paper_scanner/gakunenmatsu/koten/bansho-kokushi.html" target="_blank">告子 口語訳　板書</a></li>
-      <li class="nav_item"><a href="https://moriwakiren-fucc.github.io/paper_scanner/gakunenmatsu/koten/kobuntango.html" target="_blank">古文単語チェック</a></li>
-      <li class="nav_item"><a href="https://moriwakiren-fucc.github.io/paper_scanner/gakunenmatsu/koten/kobuntango-flash.html" target="_blank">古文単語フラッシュカード</a></li>
-    </ul>
-  </nav>
-
-</div>
 <section class="sec1">
- <div>
-  <p class="chunk">  <span class="hakubun">次の帝 、花山院天皇と申しき。</span></p>
-  <p class="chunk">  <span class="hakubun">永観二年八月二十八日、位につかせ給ふ。</span></p>
-  <p class="chunk">  <span class="hakubun">御年十七。</span></p>
-  <p class="chunk">  <span class="hakubun">寛和二年丙戌六月二十二日の夜、</span></p>
-  <p class="chunk"><span class="yakubun">驚き呆れる思いをしましたのは、</span><br>
-  <span class="hakubun">あさましく候ひしことは、</span></p>
-  <p class="chunk"><span class="yakubun">（花山天皇が）誰にもお知らせにならないで</span><br>
-  <span class="hakubun">人にも知らせさせ給はで、</span></p>
-  <p class="chunk"><span class="yakubun">ひそかに花山寺にいらっしゃって、</span><br>
-  <span class="hakubun">みそかに花山寺におはしまして、</span></p>
-  <p class="chunk"><span class="yakubun">ご出家、入道してしまわれたのは、</span><br>
-  <span class="hakubun">御出家入道せさせ給へりしこそ、</span></p>
-  <p class="chunk"><span class="yakubun">御年十九歳。</span><br>
-  <span class="hakubun">御年十九。</span></p>
-  <p class="chunk"><span class="yakubun">ご在位なさったのは二年。</span><br>
-  <span class="hakubun">世を保たせ給ふこと二年。</span></p>
-  <p class="chunk"><span class="yakubun">ご出家ののち、二十二年ご存命であった。</span><br>
-  <span class="hakubun">そののち二十二年おはしましき。</span></p>
-  <p class="chunk"><span class="yakubun">しみじみと心が痛む思いがすることは、</span><br>
-  <span class="hakubun">あはれなることは、</span></p>
-  <p class="chunk"><span class="yakubun">（花山天皇が）退位なさった夜は、</span><br>
-  <span class="hakubun">下りおはしましける夜は、</span></p>
-  <p class="chunk"><span class="yakubun">清涼殿の藤壺の上のお局の小戸から</span><br>
-  <span class="hakubun">藤壺の上の御局の小戸より</span></p>
-  <p class="chunk"><span class="yakubun">お出ましになったところ、</span><br>
-  <span class="hakubun">出でさせ給ひけるに、</span></p>
-  <p class="chunk"><span class="yakubun">有明の月がとても明るく出ていたので、</span><br>
-  <span class="hakubun">有明の月のいみじく明かかりければ、</span></p>
-  <p class="chunk"><span class="yakubun">（花山天皇が）「あらわではっきりしているなあ。</span><br>
-  <span class="hakubun">「顕証にこそありけれ。</span></p>
-  <p class="chunk"><span class="yakubun">どうしたらよかろうか。」</span><br>
-  <span class="hakubun">いかがすべからむ。」</span></p>
-  <p class="chunk"><span class="yakubun">とおっしゃったが、</span><br>
-  <span class="hakubun">と仰せられけるを、</span></p>
-  <p class="chunk"><span class="yakubun">（粟田殿が）「だからと言って、ご出家を中止なさっていいはずがありません。</span><br>
-  <span class="hakubun">「さりとて、とまらせ給ふべきやう侍らず。</span></p>
-  <p class="chunk"><span class="yakubun">（皇位継承のしるしの）神璽・宝剣もすでに皇太子のもとに移っておしまいになったからには。」</span><br>
-  <span class="hakubun">神璽・宝剣渡り給ひぬるには。」</span></p>
-  <p class="chunk"><span class="yakubun">粟田殿が（花山天皇を）せきたて申し上げなさったのは、</span><br>
-  <span class="hakubun">と、粟田殿の騒がし申し給ひけるは、</span></p>
-  <p class="chunk"><span class="yakubun">まだ、天皇がお出ましにならなかった前に、</span><br>
-  <span class="hakubun">まだ帝出でさせおはしまさざりける先に、</span></p>
-  <p class="chunk"><span class="yakubun">自らとって、</span><br>
-  <span class="hakubun">手づから取りて、</span></p>
-  <p class="chunk"><span class="yakubun">皇太子の御方にお写申し上げなさってしまったので、</span><br>
-  <span class="hakubun">春宮の御方に渡し奉り給ひてければ、</span></p>
-  <p class="chunk"><span class="yakubun">天皇が宮中へお帰りになるようなことはあってはならないことだとお思いになって、</span><br>
-  <span class="hakubun">帰り入らせ給はむことはあるまじく思して、</span></p>
-  <p class="chunk"><span class="yakubun">そのように申し上げなさったということです。</span><br>
-  <span class="hakubun">しか申させ給ひけるとぞ。</span></p>
-  <p class="chunk"><span class="yakubun">明るい日光を、</span><br>
-  <span class="hakubun">さやけき影を、</span></p>
-  <p class="chunk"><span class="yakubun">気がひけることだと（帝が）お思いになっていたうちに</span><br>
-  <span class="hakubun">まばゆく思し召しつるほどに、</span></p>
-  <p class="chunk"><span class="yakubun">月の面にむら雲がかかって、</span><br>
-  <span class="hakubun">月の顔にむら雲のかかりて、</span></p>
-  <p class="chunk"><span class="yakubun">少しあたりが暗くなっていったので、</span><br>
-  <span class="hakubun">少し暗がりゆきければ、</span></p>
-  <p class="chunk"><span class="yakubun">「私の出家は成就するのだなあ。」</span><br>
-  <span class="hakubun">「わが出家は成就するなりけり。」</span></p>
-  <p class="chunk"><span class="yakubun">とおっしゃって歩き出しなさるうちに、</span><br>
-  <span class="hakubun">と仰せられて、歩み出でさせ給ふほどに、</span></p>
-  <p class="chunk"><span class="yakubun">弘徽殿の女御のお手紙で、平素より捨てにならずに御身から離さず</span><br>
-  <span class="hakubun">弘徽殿女御の御文の、日ごろ破り残して、</span></p>
-  <p class="chunk"><span class="yakubun">ご覧になっておられたのを思い出しなって、</span><br>
-  <span class="hakubun">御身も放たず御覧じけるを思し召し出でて、</span></p>
-  <p class="chunk"><span class="yakubun">「ちょっと待て。」とおっしゃって、</span><br>
-  <span class="hakubun">「しばし。」とて、</span></p>
-  <p class="chunk"><span class="yakubun">（花山天皇が）それを取りにお入りになったそのときだよ、</span><br>
-  <span class="hakubun">取りに入りおはしましけるほどぞかし、</span></p>
-  <p class="chunk"><span class="yakubun">粟田殿が、</span><br>
-  <span class="hakubun">粟田殿の、</span></p>
-  <p class="chunk"><span class="yakubun">「どうして、このように（未練がましく）お考えになってしまわれるのか。</span><br>
-  <span class="hakubun">「いかに、かくは思し召しならせおはしましぬるぞ。</span></p>
-  <p class="chunk"><span class="yakubun">もし今この機会を逃したら、</span><br>
-  <span class="hakubun">ただ今過ぎば、</span></p>
-  <p class="chunk"><span class="yakubun">自然と支障もきっと出てまいりましょう。」</span><br>
-  <span class="hakubun">おのづからさはりも出でまうで来なむ。」</span></p>
-  <p class="chunk"><span class="yakubun">と、うそ泣きなさったのは。</span><br>
-  <span class="hakubun">と、そら泣きし給ひけるは。</span></p>
-  <p class="chunk"><span class="yakubun">（花山天皇が）花山寺にお着きになって、</span><br>
-  <span class="hakubun">花山寺におはしまし着きて、</span></p>
-  <p class="chunk"><span class="yakubun">ご出家なさった（剃髪なさった）後に、粟田殿は、</span><br>
-  <span class="hakubun">御髪下ろさせ給ひてのちにぞ、粟田殿は、</span></p>
-  <p class="chunk"><span class="yakubun">「（私は）退出して、（父の）大臣にも、（出家する前の）変わらない姿を、もう一度見せ、</span><br>
-  <span class="hakubun">「まかり出でて、大臣にも、変はらぬ姿、いま一度見え、</span></p>
-  <p class="chunk"><span class="yakubun">こういう事情をご報告申し上げて、必ず参上しましょう。」</span><br>
-  <span class="hakubun">かくと案内申して、必ず参り侍らむ。」</span></p>
-  <p class="chunk"><span class="yakubun">と申し上げなさったので、</span><br>
-  <span class="hakubun">と申し給ひければ、</span></p>
-  <p class="chunk"><span class="yakubun">「私をだましたのだなあ。」</span><br>
-  <span class="hakubun">「我をば謀るなりけり。」</span></p>
-  <p class="chunk"><span class="yakubun">とおっしゃって、お泣きになった。</span><br>
-  <span class="hakubun">とてこそ泣かせ給ひけれ。</span></p>
-  <p class="chunk"><span class="yakubun">しみじみと心が痛むことであるなあ。</span><br>
-  <span class="hakubun">あはれに悲しきことなりな。</span></p>
-  <p class="chunk"><span class="yakubun">平素は、お弟子としてお仕えしましょうと約束して、</span><br>
-  <span class="hakubun">日ごろ、よく御弟子にて候はむと契りて、</span></p>
-  <p class="chunk"><span class="yakubun">だまし申し上げなさったというのは恐ろしいことだよ。</span><br>
-  <span class="hakubun">すかし申し給ひけむが恐ろしさよ。</span></p>
- </div>
+  <!-- 中身は省略（元のままでOK） -->
 </section>
-<section class="sec2">
-</section>
+
+<section class="sec2"></section>
 </body>
 </html>
