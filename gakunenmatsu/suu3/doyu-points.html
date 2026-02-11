@@ -83,6 +83,21 @@
   font-family: sans-serif;
 }
 
+.nav_list li{
+  list-style: none; /* 点を消す */
+  padding: 0;       /* 余白も消す（推奨） */
+}
+
+.nav_list li a{
+  text-decoration: none;
+  color: #0000FF;
+}
+  
+/* アイコンがクリックされたらメニューを表示 */
+#drawer_input:checked ~ .nav_content {
+  left: 0;
+}
+
 img{
  width: 100vw;
 }
