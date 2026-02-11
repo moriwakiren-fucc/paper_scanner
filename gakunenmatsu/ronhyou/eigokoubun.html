@@ -1,0 +1,173 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>4択クイズ</title>
+<style>
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+}
+
+.container {
+    width: 90%;
+    max-width: 400px;
+    margin-top: 20px;
+}
+
+#title {
+    text-align: center;
+    font-size: 1.3em;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+#syntax {
+    text-align: center;
+    font-size: 1.1em;
+    margin-bottom: 20px;
+    min-height: 60px;
+}
+
+button.choice {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    font-size: 1em;
+    background-color: #007AFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button.choice:disabled {
+    cursor: default;
+    opacity: 0.8;
+}
+
+#progress {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.9em;
+}
+</style>
+</head>
+<body>
+<div class="container">
+    <div id="title">問題 1/23 正解:0</div>
+    <div id="syntax">構文がここに表示されます</div>
+    <button class="choice" id="btn0"></button>
+    <button class="choice" id="btn1"></button>
+    <button class="choice" id="btn2"></button>
+    <button class="choice" id="btn3"></button>
+    <div id="progress">残り: 23</div>
+</div>
+
+<script>
+const cards = [
+    {syntax: "no sooner A than B", translation: "AするとすぐにB", weak:false},
+    {syntax: "all the 比較級 because / for ...", translation: "だからこそ、よりいっそう〜だ", weak:false},
+    {syntax: "none the 比較級 because / for ...", translation: "だからといってそれだけ〜というわけではない（それでもなお〜だ）", weak:false},
+    {syntax: "比較級 and 比較級", translation: "ますます〜だ", weak:false},
+    {syntax: "prefer A to B", translation: "BよりもAを好む", weak:false},
+    {syntax: "not always ...", translation: "必ずしも〜とは限らない（部分否定）", weak:false},
+    {syntax: "not necessarily ...", translation: "必ずしも〜というわけではない（部分否定）", weak:false},
+    {syntax: "not both A and B", translation: "AもBも両方〜というわけではない（部分否定）", weak:false},
+    {syntax: "nobody ... not / nothing ... not（否定×否定）", translation: "すべて〜だ（肯定の意味になる）", weak:false},
+    {syntax: "never ... without doing", translation: "〜すれば必ず…する", weak:false},
+    {syntax: "not A but B", translation: "AではなくB", weak:false},
+    {syntax: "not only A but also B", translation: "AだけでなくBも", weak:false},
+    {syntax: "B as well as A", translation: "AだけでなくBも（Bが主）", weak:false},
+    {syntax: "hardly ... ever", translation: "めったに〜ない（seldom）", weak:false},
+    {syntax: "hardly any + 名詞", translation: "ほとんど〜ない（few/little）", weak:false},
+    {syntax: "hardly / scarcely ... when (before) ...", translation: "〜するとすぐに…", weak:false},
+    {syntax: "nothing but 〜", translation: "ただ〜にすぎない（only）", weak:false},
+    {syntax: "no longer = not 〜 any longer", translation: "もはや〜ない", weak:false},
+    {syntax: "仮定法：ifなしでも主節に would/could", translation: "would/could があれば仮定法の可能性", weak:false},
+    {syntax: "if 主語 were to do", translation: "仮に〜するなら", weak:false},
+    {syntax: "if 主語 should do", translation: "万が一〜するなら", weak:false},
+    {syntax: "as if / as though + 仮定法", translation: "あたかも〜であるかのように", weak:false},
+    {syntax: "without / but for / if it were not for / if it had not been for", translation: "もし〜がなければ", weak:false}
+];
+
+let currentIndex = 0;
+let correct = 0;
+
+function shuffleArray(arr){
+    for(let i = arr.length-1;i>0;i--){
+        const j = Math.floor(Math.random()*(i+1));
+        [arr[i],arr[j]]=[arr[j],arr[i]];
+    }
+}
+
+function showQuestion(){
+    if(currentIndex >= cards.length){
+        document.getElementById('syntax').innerText = `終了！正解: ${correct}/${cards.length}`;
+        for(let i=0;i<4;i++) document.getElementById('btn'+i).style.display='none';
+        document.getElementById('title').innerText='🎉 完了 🎉';
+        document.getElementById('progress').innerText='';
+        return;
+    }
+    const card = cards[currentIndex];
+    document.getElementById('syntax').innerText = card.syntax;
+    document.getElementById('title').innerText = `問題 ${currentIndex+1}/${cards.length} 正解:${correct}`;
+
+    let choices = [card.translation];
+    let allTrans = Array.from(new Set(cards.map(c=>c.translation)));
+    allTrans = allTrans.filter(t=>t!==card.translation);
+    while(choices.length<4){
+        const c = allTrans[Math.floor(Math.random()*allTrans.length)];
+        if(!choices.includes(c)) choices.push(c);
+    }
+    shuffleArray(choices);
+
+    for(let i=0;i<4;i++){
+        const btn = document.getElementById('btn'+i);
+        btn.innerText = choices[i];
+        btn.style.backgroundColor='#007AFF';
+        btn.disabled=false;
+    }
+
+    document.getElementById('progress').innerText = `残り: ${cards.length-currentIndex}`;
+}
+
+function checkAnswer(i){
+    const card = cards[currentIndex];
+    const btn = document.getElementById('btn'+i);
+    if(btn.innerText===card.translation){
+        btn.style.backgroundColor='green';
+        correct++;
+        card.weak=false;
+    } else {
+        btn.style.backgroundColor='red';
+        card.weak=true;
+        for(let j=0;j<4;j++){
+            const b=document.getElementById('btn'+j);
+            if(b.innerText===card.translation) b.style.backgroundColor='green';
+        }
+    }
+    for(let j=0;j<4;j++) document.getElementById('btn'+j).disabled=true;
+    setTimeout(nextQuestion,800);
+}
+
+function nextQuestion(){
+    currentIndex++;
+    showQuestion();
+}
+
+for(let i=0;i<4;i++){
+    document.getElementById('btn'+i).addEventListener('click',()=>checkAnswer(i));
+}
+
+shuffleArray(cards);
+showQuestion();
+</script>
+</body>
+</html>
