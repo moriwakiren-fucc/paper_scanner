@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>古文単語フラッシュカード</title>
+<style>
+/* チェックボックスを非表示にする */
+.drawer_hidden {
+  display: none;
+}
+
+/* ハンバーガーアイコンの設置スペース */
+.drawer_open {
+  background-color:#FFFFFF99;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  height: 3em;
+  width: 3em;
+  left: 0;
+  z-index: 101;/* 重なり順を一番上にする */
+  cursor: pointer;
+}
+
+/* ハンバーガーメニューのアイコン */
+.drawer_open span,
+.drawer_open span:before,
+.drawer_open span:after {
+  content: '';
+  display: block;
+  height: calc(3em / 8);
+  width: calc(3em * 0.85);
+  border-radius: calc(3em / 6);
+  background: #333;
+  transition: 0.5s;
+  position: absolute;
+  z-index:103;
+}
+
+/* 三本線の一番上の棒の位置調整 */
+.drawer_open span:before {
+  bottom: calc(3em / 4);
+}
+
+/* 三本線の一番下の棒の位置調整 */
+.drawer_open span:after {
+  top: calc(3em / 4);
+}
+
+/* アイコンがクリックされたら真ん中の線を透明にする */
+#drawer_input:checked ~ .drawer_open span {
+  background: rgba(255, 255, 255, 0);
+}
+
+/* アイコンがクリックされたらアイコンが×印になように上下の線を回転 */
+#drawer_input:checked ~ .drawer_open span::before {
+  bottom: 0;
+  transform: rotate(45deg);
+}
+
+#drawer_input:checked ~ .drawer_open span::after {
+  top: 0;
+  transform: rotate(-45deg);
+}
+/* メニューのデザイン*/
+.nav_content {
+  width: 90%;
+  height: 100%;
+  position: fixed;
+  top: 0%;
+  left: -90%; /* メニューを画面の外に飛ばす */
+  z-index: 99;
+  background: #FFFFFF99;
+  transition: .5s;
+  text-align: center;
+  padding-top: 20px;
+  font-size: 1.5em;
+  overflow: scroll;
+  font-family: sans-serif;
+}
+
+.nav_list li{
+  list-style: none; /* 点を消す */
+  padding: 0;       /* 余白も消す（推奨） */
+}
+
+.nav_list li a{
+  text-decoration: none;
+  color: #0000FF;
+}
+  
+/* アイコンがクリックされたらメニューを表示 */
+#drawer_input:checked ~ .nav_content {
+  left: 0;
+}
+body {
+    font-family: sans-serif;
+    text-align: center;
+    background: #f4f4f4;
+}
+.card {
+    width: 500px;
+    height: 250px;
+    margin: 40px auto;
+    perspective: 1000px;
+}
+.inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+.card.flip .inner {
+    transform: rotateY(180deg);
+}
+.face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    background: white;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    font-size: 20px;
+}
+.back {
+    transform: rotateY(180deg);
+}
+button {
+    margin: 5px;
+    padding: 8px 14px;
+}
+.stats {
+    margin-top: 10px;
+}
+</style>
+</head>
+<body>
+<!-- ハンバーガーメニュー部分 -->
+<div class="nav">
+
+  <!-- ハンバーガーメニューの表示・非表示を切り替えるチェックボックス -->
+  <input id="drawer_input" class="drawer_hidden" type="checkbox">
+
+  <!-- ハンバーガーアイコン -->
+  <label for="drawer_input" class="drawer_open"><span></span></label>
+
+  <!-- メニュー -->
+  <nav class="nav_content">
+    <ul class="nav_list">
+      <li class="nav_item"><a href="https://sites.google.com/view/breakthrough79-gakunenmatsu/koten" target="_blank">古典探究のページへ</a></li>
+      <li class="nav_item"><a href="https://moriwakiren-fucc.github.io/paper_scanner/gakunenmatsu/koten/bansho-shoshi100.html" target="_blank">諸子百家（儒家と道家）　板書</a></li>
+      <li class="nav_item"><a href="https://moriwakiren-fucc.github.io/paper_scanner/gakunenmatsu/koten/bansho-kokushi.html" target="_blank">告子 口語訳　板書</a></li>
+      <li class="nav_item"><a href="https://moriwakiren-fucc.github.io/paper_scanner/gakunenmatsu/koten/kobuntango.html" target="_blank">古文単語チェック</a></li>
+    </ul>
+  </nav>
+
+</div>
+
+<h2>古文単語フラッシュカード</h2>
+
+<div class="card" onclick="flipCard()">
+    <div class="inner" id="inner">
+        <div class="face" id="front"></div>
+        <div class="face back" id="back"></div>
+    </div>
+</div>
+
+<div>
+    <button onclick="prevCard()">前へ</button>
+    <button onclick="nextCard()">次へ</button>
+    <button onclick="shuffle()">ランダム</button>
+</div>
+
+<div>
+    範囲:
+    <input type="number" id="start" value="181"> 〜
+    <input type="number" id="end" value="240">
+    <button onclick="setRange()">適用</button>
+</div>
+
+<div>
+    <button onclick="markCorrect()">正解</button>
+    <button onclick="markWrong()">不正解</button>
+</div>
+
+<div class="stats">
+    正解: <span id="correct">0</span>
+    不正解: <span id="wrong">0</span>
+</div>
+
+<script>
+const allWords = [
+{no:181, word:"しる", meaning:"領有する・治める"},
+{no:182, word:"あくがる", meaning:"さまよい出る・魂がさまよう・心がうわの空"},
+{no:183, word:"やすらふ", meaning:"立ち止まる・ためらう"},
+{no:184, word:"うちいづ", meaning:"口に出して言う"},
+{no:185, word:"やつす", meaning:"地味な格好にする"},
+{no:186, word:"おとなふ", meaning:"音を立てる・訪れる"},
+{no:187, word:"そばむ", meaning:"横を向く"},
+{no:188, word:"かたらふ", meaning:"親しくする"},
+{no:189, word:"すむ", meaning:"(男が女のもとに)通う"},
+{no:190, word:"さはる", meaning:"妨げられる"},
+{no:191, word:"あるじす", meaning:"もてなす"},
+{no:192, word:"もてなす", meaning:"振る舞う・取り扱う"},
+{no:193, word:"きょうず", meaning:"おもしろがる"},
+{no:194, word:"およすぐ", meaning:"成長する・大人びる"},
+{no:195, word:"ときめく", meaning:"寵愛を受ける"},
+{no:196, word:"さる", meaning:"避ける・断る"},
+{no:197, word:"こうず", meaning:"疲れる"},
+{no:198, word:"かきくらす", meaning:"悲しみで暗くなる"},
+{no:199, word:"うれふ", meaning:"訴える・嘆く"},
+{no:200, word:"かこつ", meaning:"不平を言う"},
+{no:201, word:"いたはる", meaning:"病気になる・世話をする"},
+{no:202, word:"ためらふ", meaning:"静養する・感情を抑える"},
+{no:203, word:"おこたる", meaning:"病気がよくなる"},
+{no:204, word:"なやむ", meaning:"病気で苦しむ"},
+{no:205, word:"おくる", meaning:"先立たれる"},
+{no:206, word:"したたむ", meaning:"処理する・準備する"},
+{no:207, word:"あたらし", meaning:"もったいない"},
+{no:208, word:"かたじけなし", meaning:"おそれ多い・ありがたい"},
+{no:209, word:"をこがまし", meaning:"愚かしい"},
+{no:210, word:"こころにくし", meaning:"奥ゆかしい"},
+{no:211, word:"さかし", meaning:"賢い・こざかしい"},
+{no:212, word:"すきずきし", meaning:"好色めいている・風流"},
+{no:213, word:"なまめかし", meaning:"優美だ"},
+{no:214, word:"いまめかし", meaning:"現代風・華やか"},
+{no:215, word:"しどけなし", meaning:"だらしない"},
+{no:216, word:"つきづきし", meaning:"ふさわしい"},
+{no:217, word:"なつかし", meaning:"好ましい"},
+{no:218, word:"めやすし", meaning:"感じよい"},
+{no:219, word:"こころやすし", meaning:"安心だ・気安い"},
+{no:220, word:"うしろめたし", meaning:"心配だ"},
+{no:221, word:"こころぐるし", meaning:"つらい・気の毒"},
+{no:222, word:"まばゆし", meaning:"見ていられない・気恥ずかしい"},
+{no:223, word:"はづかし", meaning:"立派だ"},
+{no:224, word:"つたなし", meaning:"下手だ・劣る"},
+{no:225, word:"こちたし", meaning:"仰々しい"},
+{no:226, word:"さうなし", meaning:"ためらわない"},
+{no:227, word:"ところせし", meaning:"いっぱいだ・窮屈"},
+{no:228, word:"つつまし", meaning:"気がひける"},
+{no:229, word:"まさなし", meaning:"よくない"},
+{no:230, word:"ねたし", meaning:"しゃくにさわる"},
+{no:231, word:"まだし", meaning:"時期尚早・未熟"},
+{no:232, word:"はしたなし", meaning:"不釣り合い・決まりが悪い"},
+{no:233, word:"わりなし", meaning:"無理だ・しかたがない"},
+{no:234, word:"ずちなし", meaning:"どうしようもない"},
+{no:235, word:"あへなし", meaning:"あっけない"},
+{no:236, word:"くまなし", meaning:"隈がない・行き届いている"},
+{no:237, word:"めざまし", meaning:"気にくわない"},
+{no:238, word:"こころづきなし", meaning:"気に入らない"},
+{no:239, word:"ゆくりなし", meaning:"突然だ"},
+{no:240, word:"あつし", meaning:"病状が重い"}
+];
+
+let words = [...allWords];
+let current = 0;
+let correct = 0;
+let wrong = 0;
+
+function showCard(){
+    document.getElementById("front").textContent =
+        words[current].no + " " + words[current].word;
+    document.getElementById("back").textContent =
+        words[current].meaning;
+    document.querySelector(".card").classList.remove("flip");
+}
+
+function flipCard(){
+    document.querySelector(".card").classList.toggle("flip");
+}
+
+function nextCard(){
+    current = (current + 1) % words.length;
+    showCard();
+}
+
+function prevCard(){
+    current = (current - 1 + words.length) % words.length;
+    showCard();
+}
+
+function shuffle(){
+    words.sort(() => Math.random() - 0.5);
+    current = 0;
+    showCard();
+}
+
+function markCorrect(){
+    correct++;
+    document.getElementById("correct").textContent = correct;
+    nextCard();
+}
+
+function markWrong(){
+    wrong++;
+    document.getElementById("wrong").textContent = wrong;
+    nextCard();
+}
+
+function setRange(){
+    const start = parseInt(document.getElementById("start").value);
+    const end = parseInt(document.getElementById("end").value);
+    words = allWords.filter(w => w.no >= start && w.no <= end);
+    current = 0;
+    showCard();
+}
+
+showCard();
+</script>
+
+</body>
+</html>
