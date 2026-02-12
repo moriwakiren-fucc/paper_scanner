@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>諸子百家（儒家と道家）　板書</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Klee+One&display=swap');
+/* チェックボックスを非表示にする */
+.drawer_hidden {
+  display: none;
+}
+
+/* ハンバーガーアイコンの設置スペース */
+.drawer_open {
+  background-color:#FFFFFF99;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  height: 3em;
+  width: 3em;
+  left: 0;
+  z-index: 101;/* 重なり順を一番上にする */
+  cursor: pointer;
+}
+
+/* ハンバーガーメニューのアイコン */
+.drawer_open span,
+.drawer_open span:before,
+.drawer_open span:after {
+  content: '';
+  display: block;
+  height: calc(3em / 8);
+  width: calc(3em * 0.85);
+  border-radius: calc(3em / 6);
+  background: #333;
+  transition: 0.5s;
+  position: absolute;
+  z-index:103;
+}
+
+/* 三本線の一番上の棒の位置調整 */
+.drawer_open span:before {
+  bottom: calc(3em / 4);
+}
+
+/* 三本線の一番下の棒の位置調整 */
+.drawer_open span:after {
+  top: calc(3em / 4);
+}
+
+/* アイコンがクリックされたら真ん中の線を透明にする */
+#drawer_input:checked ~ .drawer_open span {
+  background: rgba(255, 255, 255, 0);
+}
+
+/* アイコンがクリックされたらアイコンが×印になように上下の線を回転 */
+#drawer_input:checked ~ .drawer_open span::before {
+  bottom: 0;
+  transform: rotate(45deg);
+}
+
+#drawer_input:checked ~ .drawer_open span::after {
+  top: 0;
+  transform: rotate(-45deg);
+}
+/* メニューのデザイン*/
+.nav_content {
+  width: 90%;
+  height: 100%;
+  position: fixed;
+  top: 0%;
+  left: -90%; /* メニューを画面の外に飛ばす */
+  z-index: 99;
+  background: #FFFFFF99;
+  transition: .5s;
+  text-align: center;
+  padding-top: 20px;
+  font-size: 1.5em;
+  overflow: scroll;
+  font-family: sans-serif;
+}
+
+.nav_list li{
+  list-style: none; /* 点を消す */
+  padding: 0;       /* 余白も消す（推奨） */
+}
+
+.nav_list li a{
+  text-decoration: none;
+  color: #0000FF;
+}
+  
+/* アイコンがクリックされたらメニューを表示 */
+#drawer_input:checked ~ .nav_content {
+  left: 0;
+}
+ 
+body{
+ margin: 0;
+ overflow: hidden;
+ width: 100vw;
+ height: 100vh;
+}
+.sec1{
+ font-size: 1.3em;
+ height: 95vh;
+ width: 100vw;
+ color: #FFFFFF;
+ background-color: #1d5537;
+ font-family: Klee One;
+ writing-mode: vertical-rl;
+ text-orientation: mixed;
+ overflow: hidden;
+ overflow-x: auto;
+ -webkit-overflow-scrolling: touch;
+}
+.sec2{
+ width: 100vw;
+ height: 5vh;
+ background-color:#c39143;
+}
+div{
+ margin:0 0.5em;
+}
+.q{
+  font-family: sans-serif;
+}
+p{
+ margin: 1em 0;
+}
+</style>
+</head>
+<body>
+<!-- ハンバーガーメニュー部分 -->
+<div class="nav">
+
+  <!-- ハンバーガーメニューの表示・非表示を切り替えるチェックボックス -->
+  <input id="drawer_input" class="drawer_hidden" type="checkbox">
+
+  <!-- ハンバーガーアイコン -->
+  <label for="drawer_input" class="drawer_open"><span></span></label>
+
+  <!-- メニュー -->
+  <nav class="nav_content">
+    <ul class="nav_list">
+      <li class="nav_item"><a href="https://sites.google.com/view/breakthrough79-gakunenmatsu/koten" target="_blank">古典探究のページへ</a></li>
+      <li class="nav_item"><a href="https://moriwakiren-fucc.github.io/paper_scanner/gakunenmatsu/koten/bansho-kazanin.html" target="_blank">大鏡（花山院の出家） 口語訳　板書</a></li>
+      <li class="nav_item"><a href="https://moriwakiren-fucc.github.io/paper_scanner/gakunenmatsu/koten/bansho-shoshi100.html" target="_blank">諸子百家（儒家と道家）　板書</a></li>
+      <li class="nav_item"><a href="https://moriwakiren-fucc.github.io/paper_scanner/gakunenmatsu/koten/bansho-kokushi.html" target="_blank">告子 口語訳　板書</a></li>
+      <li class="nav_item"><a href="https://moriwakiren-fucc.github.io/paper_scanner/gakunenmatsu/koten/kobuntango.html" target="_blank">古文単語チェック</a></li>
+<li class="nav_item"><a href="https://moriwakiren-fucc.github.io/paper_scanner/gakunenmatsu/koten/kobuntango-flash.html" target="_blank">古文単語フラッシュカード by桑野玲</a></li>
+    </ul>
+  </nav>
+
+</div>
+  <section class="sec1">
+  <div>
+  <p class="q">問一　「性猶湍水也」とはどういうことか？
+  <p class="a">人間の本性（生まれつきの性質）は、<br>
+  渦巻く水が外的条件に左右され東西どちらにも流れるように、<br>
+  善・不善どちらにもなりうるということ。</p>
+ </div>
+  <div>
+  <p class="q">問二　「分於上下」とはどういうことか？
+  <p class="a">水は下（低い方）へ流れていくということ。</p>
+ </div>
+
+  <div>
+  <p class="q">問三　「其勢」とは何をさすか？
+  <p class="a">手で打つ勢いと、<br>
+  せき止めて強くした水の勢い。</p>
+ </div>
+</section>
+<section class="sec2">
+</section>
+</body>
+</html>
