@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-782DH8JG37"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-782DH8JG37');
+</script>
+<meta charset="UTF-8">
+<title>数Ｃ予想問題の模範解答 by神﨑智也</title>
+
+<style>
+  
+/* チェックボックスを非表示にする */
+.drawer_hidden {
+  display: none;
+}
+
+/* ハンバーガーアイコンの設置スペース */
+.drawer_open {
+  background-color:#FFFFFF99;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  height: 3em;
+  width: 3em;
+  left: 0;
+  z-index: 101;/* 重なり順を一番上にする */
+  cursor: pointer;
+}
+
+/* ハンバーガーメニューのアイコン */
+.drawer_open span,
+.drawer_open span:before,
+.drawer_open span:after {
+  content: '';
+  display: block;
+  height: calc(3em / 8);
+  width: calc(3em * 0.85);
+  border-radius: calc(3em / 6);
+  background: #333;
+  transition: 0.5s;
+  position: absolute;
+  z-index:103;
+}
+
+/* 三本線の一番上の棒の位置調整 */
+.drawer_open span:before {
+  bottom: calc(3em / 4);
+}
+
+/* 三本線の一番下の棒の位置調整 */
+.drawer_open span:after {
+  top: calc(3em / 4);
+}
+
+/* アイコンがクリックされたら真ん中の線を透明にする */
+#drawer_input:checked ~ .drawer_open span {
+  background: rgba(255, 255, 255, 0);
+}
+
+/* アイコンがクリックされたらアイコンが×印になように上下の線を回転 */
+#drawer_input:checked ~ .drawer_open span::before {
+  bottom: 0;
+  transform: rotate(45deg);
+}
+
+#drawer_input:checked ~ .drawer_open span::after {
+  top: 0;
+  transform: rotate(-45deg);
+}
+/* メニューのデザイン*/
+.nav_content {
+  width: 90%;
+  height: 100%;
+  position: fixed;
+  top: 0%;
+  left: -90%; /* メニューを画面の外に飛ばす */
+  z-index: 99;
+  background: #FFFFFF99;
+  transition: .5s;
+  text-align: center;
+  padding-top: 20px;
+  font-size: 1.5em;
+  overflow: scroll;
+  font-family: sans-serif;
+}
+
+.nav_list li{
+  list-style: none; /* 点を消す */
+  padding: 0;       /* 余白も消す（推奨） */
+}
+
+.nav_list li a{
+  text-decoration: none;
+  color: #0000FF;
+}
+  
+/* アイコンがクリックされたらメニューを表示 */
+#drawer_input:checked ~ .nav_content {
+  left: 0;
+}
+
+img{
+ width: 100vw;
+}
+.sec1{
+  width:100vw;
+}
+</style>
+
+</head>
+<body>
+<!-- ハンバーガーメニュー部分 -->
+<div class="nav">
+
+  <!-- ハンバーガーメニューの表示・非表示を切り替えるチェックボックス -->
+  <input id="drawer_input" class="drawer_hidden" type="checkbox">
+
+  <!-- ハンバーガーアイコン -->
+  <label for="drawer_input" class="drawer_open"><span></span></label>
+
+  <!-- メニュー -->
+  <nav class="nav_content">
+    <ul class="nav_list">
+      <li class="nav_item"><a href="https://sites.google.com/view/breakthrough79-gakunenmatsu/butsuri" target="_blank">物理のページへ</a></li>
+      <li class="nav_item"><a href="https://moriwakiren-fucc.github.io/paper_scanner/gakunenmatsu/butsuri/netsuriki" target="_blank">熱力学 演習問題</a></li>
+    </ul>
+  </nav>
+
+</div>
+
+<div class="sec1">
+  <img src="https://moriwakiren-fucc.github.io/paper_scanner/gakunenmatsu/suuc/tomonari-yosou-a.jpeg">
+  <img src="https://moriwakiren-fucc.github.io/paper_scanner/gakunenmatsu/suuc/tomonari-yosou-a3.jpeg">
+  <img src="https://moriwakiren-fucc.github.io/paper_scanner/gakunenmatsu/suuc/tomonari-yosou-a2.jpeg">
+</div>
+</body>
+</html>
