@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-782DH8JG37"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-782DH8JG37');
+</script>
+
+<meta charset="UTF-8">
+<title>古文単語テスト</title>
+<style>
+#toggle{
+ display: none;
+}
+.lq, .la{
+ font-family: sans-serif;
+ font-size: 2em;
+ background-color: #00000066;
+ font-weight: bold;
+ position: fixed;
+ top: 0;
+ left: 2em;
+}
+.lq{
+ display: block;
+ z-index: 6;
+}
+.la{
+ display: none;
+ z-index: 2;
+}
+img{
+ width: 100vw;
+}
+.q{
+ display: block;
+ position: absolute;
+ top: 0;
+ left: 0;
+ z-index: 5;
+}
+.a{
+ display: none;
+ position: absolute;
+ top: 0;
+ left: 0;
+ z-index: 1;
+}
+#toggle:checked ~ .q{
+ display: none;
+}
+#toggle:checked ~ .lq{
+ display: none;
+}
+#toggle:checked ~ .a{
+ display: block;
+}
+#toggle:checked ~ .la{
+ display: block;
+}
+</style>
+</head>
+<div class="b">
+<input type="checkbox" id="toggle">
+<label class="lq" for="toggle">答えを表示する</label>
+<label class="la" for="toggle">答えを表示しない</label>
+<div class="q">
+  <img src="./tangoq1.jpg">
+  <img src="./tangoq2.jpg">
+  <img src="./tangoq3.jpg">
+  <img src="./tangoq4.jpg">
+</div>
+<div class="a">
+  <img src="./tangoa1.jpg">
+  <img src="./tangoa2.jpg">
+  <img src="./tangoa3.jpg">
+  <img src="./tangoa4.jpg">
+</div>
+</div>
+</html>
